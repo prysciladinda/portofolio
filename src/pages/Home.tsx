@@ -1,11 +1,52 @@
 import foto from "../assets/foto.svg"
 import svg1 from "../assets/sapiens.png"
+import pokemonpng from "../assets/pokemon.png";
+
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 import { AiFillGithub } from "react-icons/ai"
 import { FiDownload } from "react-icons/fi"
 import { BsInstagram, BsLinkedin } from "react-icons/bs"
 
+import Card from "../components/Card"
+
+const data = [
+    {
+        id: 1,
+        image: pokemonpng,
+        title: "Pokemon",
+        description: "A website about catching pokemons integrated with the pokemon API",
+    },
+    {
+        id: 2,
+        image: "../assets/pokemon.png",
+        title: "Pokemon",
+        description: "A website about catching pokemons integrated with the pokemon API",
+    },
+    {
+        id: 3,
+        image: "../assets/pokemon.png",
+        title: "Pokemon",
+        description: "A website about catching pokemons integrated with the pokemon API",
+    },
+
+];
+
 function Home() {
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: true,
+        autoplay: true,
+        autoplaySpeed: 3000,
+
+    };
+
     return (
         <div className="relative [background:linear-gradient(118.58deg,_#fff_14.5%,_#ffdcff_40.09%,_#c198dd_53.45%,_#c199dd_55.5%,_#fff)] w-full h-[3518px] overflow-hidden text-left text-21xl text-color3">
             <div className="h-screen w-full">
@@ -49,14 +90,29 @@ function Home() {
                 <p className="text-2xl justify-center flex font-bold">About Me</p>
                 <div className="flex text-center justify-evenly">
                     <img src={svg1} alt="svg" className="w-1/2" />
-                    <p className="w-1/3 text-xl py-px m-4">Hello, I am pryscila dinda, web application development using React, TypeScript, and Tailwind CSS. I also have expertise in design using Figma and using Daisy UI to speed up development.
+                    <p className="w-1/3 text-xl py-px mt-24">Hello, I am pryscila dinda, web application development using React, TypeScript, and Tailwind CSS. I also have expertise in design using Figma and using Daisy UI to speed up development.
                         <br />
                         In addition, I am experienced in integration with REST APIs and using the Vercel platform for easy deployment of web applications. I am always enthusiastic in taking on new challenges and ready to contribute to the development of innovative web applications.
 
                     </p>
                 </div>
             </div>
-            <div id="projects">Projects</div>
+            <div id="projects" >
+                <p className="text-2xl font-bold mx-auto pl-44">Projects</p>
+                <div className="flex justify-center">
+                    <Slider {...settings} className="mx-auto w-[24rem] pt-4">
+                        {data.map((item) => (
+                            <Card
+                                key={item.id}
+                                image={item.image}
+                                title={item.title}
+                                description={item.description}
+                                buttonText="Click here"
+                            />
+                        ))}
+                    </Slider>
+                </div>
+            </div>
             <div id="contact">contact</div>
             <div>tech</div>
         </div>
