@@ -1,6 +1,8 @@
 import foto from "../assets/foto.svg"
 import svg1 from "../assets/sapiens.png"
 import pokemonpng from "../assets/pokemon.png";
+import pointsvg from "../assets/sales.webp"
+import gurumupng from "../assets/gurumu crop.png"
 
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -11,6 +13,7 @@ import { FiDownload } from "react-icons/fi"
 import { BsInstagram, BsLinkedin } from "react-icons/bs"
 
 import Card from "../components/Card"
+import { useState } from "react";
 
 const data = [
     {
@@ -18,23 +21,27 @@ const data = [
         image: pokemonpng,
         title: "Pokemon",
         description: "A website about catching pokemons integrated with the pokemon API",
+        onclick: "https://github.com/prysciladinda/pokemon-app"
     },
     {
         id: 2,
-        image: "../assets/pokemon.png",
-        title: "Pokemon",
-        description: "A website about catching pokemons integrated with the pokemon API",
+        image: pointsvg,
+        title: "Pointku",
+        description: "PointKu is a cashier / point of sale web in which we can add products / items that we will sell by filling out the form provided.",
+        onclick: "https://github.com/prysciladinda/PointKu"
     },
     {
         id: 3,
-        image: "../assets/pokemon.png",
-        title: "Pokemon",
-        description: "A website about catching pokemons integrated with the pokemon API",
+        image: gurumupng,
+        title: "GuruMu",
+        description: "GuruMu is an online tutoring platform that helps students out there who want to grow together and improve their knowledge with competent teachers who have guaranteed expertise.",
+        onclick: "https://github.com/prysciladinda/GuruMu"
     },
 
 ];
 
 function Home() {
+
     const settings = {
         dots: true,
         infinite: true,
@@ -47,8 +54,40 @@ function Home() {
 
     };
 
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [message, setMessage] = useState('');
+
+    const handleSubmit = (e: { preventDefault: () => void; target: any; }) => {
+        e.preventDefault();
+        // Kirim form ke URL Formspree
+        const form = e.target;
+        const formData = new FormData(form);
+        fetch(form.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            }
+        })
+            .then(response => {
+                if (response.ok) {
+                    alert('Email berhasil dikirim');
+                    // Reset form setelah pengiriman berhasil
+                    setName('');
+                    setEmail('');
+                    setMessage('');
+                } else {
+                    alert('Terjadi kesalahan saat mengirim email');
+                }
+            })
+            .catch(error => {
+                alert('Terjadi kesalahan saat mengirim email:', error);
+            });
+    };
+
     return (
-        <div className="relative [background:linear-gradient(118.58deg,_#fff_14.5%,_#ffdcff_40.09%,_#c198dd_53.45%,_#c199dd_55.5%,_#fff)] w-full h-[3518px] overflow-hidden text-left text-21xl text-color3">
+        <div className="relative [background:linear-gradient(118.58deg,_#fff_14.5%,_#ffdcff_40.09%,_#c198dd_53.45%,_#c199dd_55.5%,_#fff)] w-full h-full overflow-hidden text-left text-21xl text-color3">
             <div className="h-screen w-full">
                 <div className="flex flex-row justify-around h-[5rem] my-10 py-px text-color3">
                     <p className="text-xl font-bold">Pryscila Dinda</p>
@@ -86,7 +125,7 @@ function Home() {
                     <img src={foto} alt="foto" className="w-[25%]" />
                 </div>
             </div>
-            <div id="about" className="h-fit w-full ">
+            <div id="about" className="h-[45rem] w-full ">
                 <p className="text-2xl justify-center flex font-bold">About Me</p>
                 <div className="flex text-center justify-evenly">
                     <img src={svg1} alt="svg" className="w-1/2" />
@@ -98,9 +137,9 @@ function Home() {
                 </div>
             </div>
             <div id="projects" >
-                <p className="text-2xl font-bold mx-auto pl-44">Projects</p>
+                <p className="text-2xl font-bold mx-auto pb-6 flex justify-center">Projects</p>
                 <div className="flex justify-center">
-                    <Slider {...settings} className="mx-auto w-[24rem] pt-4">
+                    <Slider {...settings} className="mx-auto w-[50%] pt-4">
                         {data.map((item) => (
                             <Card
                                 key={item.id}
@@ -108,12 +147,50 @@ function Home() {
                                 title={item.title}
                                 description={item.description}
                                 buttonText="Click here"
+                                onClickdata={item.onclick}
                             />
                         ))}
                     </Slider>
                 </div>
             </div>
-            <div id="contact">contact</div>
+            <div id="contact" className=" h-fit pt-24 w-full ">
+                <p className="text-2xl font-bold flex justify-center">Contact</p>
+                <form onSubmit={handleSubmit} action="https://formspree.io/f/xvoneqqe" className="flex flex-col items-center mt-8">
+
+                    <input
+                        type="text"
+                        name="name"
+                        placeholder="Your Name"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        className="border bg-white rounded-lg py-2 px-4 mb-4 w-[40rem] h-16"
+                        required
+                    />
+                    <input
+                        type="email"
+                        name="email"
+                        placeholder="Your Email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        className="border bg-white rounded-lg py-2 px-4 mb-4 w-[40rem] h-16"
+                        required
+                    />
+                    <textarea
+                        name="message"
+                        placeholder="Your Message"
+                        value={message}
+                        onChange={(e) => setMessage(e.target.value)}
+                        className="border bg-white rounded-lg py-2 px-4 mb-4 w-[40rem] h-32"
+                        required
+                    />
+                    <button
+                        type="submit"
+                        className="bg-color5 text-white rounded-lg py-2 px-4 w-[40rem]"
+                    >
+                        Send
+                    </button>
+                </form>
+            </div>
             <div>tech</div>
         </div>
     )
