@@ -3,6 +3,8 @@ import svg1 from "../assets/sapiens.png"
 import pokemonpng from "../assets/pokemon.png";
 import pointsvg from "../assets/sales.webp"
 import gurumupng from "../assets/gurumu crop.png"
+import logo1 from "../assets/logo1.svg"
+import logo2 from "../assets/logo2.svg"
 
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -82,7 +84,7 @@ function Home() {
                 }
             })
             .catch(error => {
-                alert('Terjadi kesalahan saat mengirim email:', error);
+                alert('Terjadi kesalahan saat mengirim email:' + error);
             });
     };
 
@@ -136,7 +138,7 @@ function Home() {
                     </p>
                 </div>
             </div>
-            <div id="projects" >
+            <div id="projects" className="h-fit" >
                 <p className="text-2xl font-bold mx-auto pb-6 flex justify-center">Projects</p>
                 <div className="flex justify-center">
                     <Slider {...settings} className="mx-auto w-[50%] pt-4">
@@ -153,45 +155,64 @@ function Home() {
                     </Slider>
                 </div>
             </div>
-            <div id="contact" className=" h-fit pt-24 w-full ">
+            <div id="contact" className=" h-[35rem] pt-24 w-full ">
                 <p className="text-2xl font-bold flex justify-center">Contact</p>
-                <form onSubmit={handleSubmit} action="https://formspree.io/f/xvoneqqe" className="flex flex-col items-center mt-8">
+                <div className="flex flex-row justify-center ">
+                    <form onSubmit={handleSubmit} action="https://formspree.io/f/xvoneqqe" className="flex flex-col items-center mt-8">
 
-                    <input
-                        type="text"
-                        name="name"
-                        placeholder="Your Name"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        className="border bg-white rounded-lg py-2 px-4 mb-4 w-[40rem] h-16"
-                        required
-                    />
-                    <input
-                        type="email"
-                        name="email"
-                        placeholder="Your Email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        className="border bg-white rounded-lg py-2 px-4 mb-4 w-[40rem] h-16"
-                        required
-                    />
-                    <textarea
-                        name="message"
-                        placeholder="Your Message"
-                        value={message}
-                        onChange={(e) => setMessage(e.target.value)}
-                        className="border bg-white rounded-lg py-2 px-4 mb-4 w-[40rem] h-32"
-                        required
-                    />
-                    <button
-                        type="submit"
-                        className="bg-color5 text-white rounded-lg py-2 px-4 w-[40rem]"
-                    >
-                        Send
-                    </button>
-                </form>
+                        <input
+                            type="text"
+                            name="name"
+                            placeholder="Your Name"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            className="border bg-white rounded-lg py-2 px-4 mb-4 w-[40rem] h-16"
+                            required
+                        />
+                        <input
+                            type="email"
+                            name="email"
+                            placeholder="Your Email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            className="border bg-white rounded-lg py-2 px-4 mb-4 w-[40rem] h-16"
+                            required
+                        />
+                        <textarea
+                            name="message"
+                            placeholder="Your Message"
+                            value={message}
+                            onChange={(e) => setMessage(e.target.value)}
+                            className="border bg-white rounded-lg py-2 px-4 mb-4 w-[40rem] h-32"
+                            required
+                        />
+                        <button
+                            type="submit"
+                            className="bg-color5 text-white rounded-lg py-2 px-4 w-[40rem]"
+                        >
+                            Send
+                        </button>
+                    </form>
+                    <div className="flex flex-col self-center gap-2 pl-6 ">
+                        <a href="https://github.com/prysciladinda" target="_blank" rel="noopener noreferrer">
+                            <AiFillGithub className="w-10 h-10 text-color3" />
+                        </a>
+                        <a href="https://www.instagram.com/prysciladinda/" target="_blank" rel="noopener noreferrer">
+                            <BsInstagram className="w-9 h-9 m-1 text-color3" />
+                        </a>
+                        <a href="https://www.linkedin.com/in/nama_pengguna_linkedin/" target="_blank" rel="noopener noreferrer">
+                            <BsLinkedin className="w-9 h-9 m-1 text-color3" />
+                        </a>
+                    </div>
+                </div>
             </div>
-            <div>tech</div>
+            <div className="h-[25rem] w-full flex flex-col justify-center items-center">
+                <p className="text-2xl font-bold">Tech stack</p>
+                <img src={logo1} alt="logo" className="w-[15rem]" />
+                <br />
+                <img src={logo2} alt="logo" className="w-[30rem]" />
+            </div>
+
         </div>
     )
 }
