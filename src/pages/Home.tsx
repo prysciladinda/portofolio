@@ -5,6 +5,7 @@ import pointsvg from "../assets/sales.webp"
 import gurumupng from "../assets/gurumu crop.png"
 import logo1 from "../assets/logo1.svg"
 import logo2 from "../assets/logo2.svg"
+import cvPdf from "../assets/CV_Pryscila Dinda Eliana.pdf";
 
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -109,7 +110,12 @@ function Home() {
                             interactive and engaging web code.</p>
                         <br />
                         <div className="flex flex-row gap-4">
-                            <button className="bg-color5 rounded-2xl text-white w-44 h-8 flex flex-row p-1 m-1 gap-4 hover:bg-color3">
+                            <button className="bg-color5 rounded-2xl text-white w-44 h-8 flex flex-row p-1 m-1 gap-4 hover:bg-color3" onClick={() => {
+                                const link = document.createElement('a');
+                                link.href = cvPdf;
+                                link.download = 'CV_Pryscila Dinda Eliana';
+                                link.click();
+                            }}>
                                 <FiDownload className="w-5 h-5 ml-1" />
                                 Download CV</button>
                             <a href="https://github.com/prysciladinda" target="_blank" rel="noopener noreferrer">
@@ -118,7 +124,7 @@ function Home() {
                             <a href="https://www.instagram.com/prysciladinda/" target="_blank" rel="noopener noreferrer">
                                 <BsInstagram className="w-9 h-9 m-1 text-color3" />
                             </a>
-                            <a href="https://www.linkedin.com/in/nama_pengguna_linkedin/" target="_blank" rel="noopener noreferrer">
+                            <a href="https://www.linkedin.com/in/pryscila-dinda-42056a147/" target="_blank" rel="noopener noreferrer">
                                 <BsLinkedin className="w-9 h-9 m-1 text-color3" />
                             </a>
 
@@ -200,7 +206,7 @@ function Home() {
                         <a href="https://www.instagram.com/prysciladinda/" target="_blank" rel="noopener noreferrer">
                             <BsInstagram className="w-9 h-9 m-1 text-color3" />
                         </a>
-                        <a href="https://www.linkedin.com/in/nama_pengguna_linkedin/" target="_blank" rel="noopener noreferrer">
+                        <a href="https://www.linkedin.com/in/pryscila-dinda-42056a147/" target="_blank" rel="noopener noreferrer">
                             <BsLinkedin className="w-9 h-9 m-1 text-color3" />
                         </a>
                     </div>
